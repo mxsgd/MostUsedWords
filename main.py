@@ -13,8 +13,6 @@ def CountWordsUsage():
     for word in Words:
         i = Words.count(word)
         countedWord = [word, i]
-        while(word in Words):
-            Words.remove(word)
         if ((countedWord in Counted)==False):
             Counted.append(countedWord)
     Counted.sort(key=lambda word: word[1], reverse=True)
