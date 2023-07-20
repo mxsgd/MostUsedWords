@@ -1,29 +1,31 @@
 import re
 import pandas as pd
 
-def CountWordsUsage():
-    Words = []
-    Counted = []
+
+def count_words_usage():
+    words = []
+    counted = []
     f = open("words.txt", "r", errors='ignore')
     data = f.read()
     data = re.sub(r'[^\w\s]', '', data)
-    for words in data.split():
-        Words.append(words)
+    for word in data.split():
+        words.append(word)
 
-    for word in Words:
-        i = Words.count(word)
-        countedWord = [word, i]
-        if ((countedWord in Counted)==False):
-            Counted.append(countedWord)
-    Counted.sort(key=lambda word: word[1], reverse=True)
+    for word in words:
+        i = words.count(word)
+        countedword = [word, i]
+        if not (countedword in counted):
+            counted.append(countedword)
+    counted.sort(key=lambda word: word[1], reverse=True)
 
-    Size = (len(Counted))
-    Needed = int(Size/10)
-    Final = []
-    for i in range(Needed):
-        Final.append(Counted[i][0])
-    print(Final)
+    size = (len(counted))
+    needed = int(size/10)
+    final = []
+    for i in range(needed):
+        final.append(counted[i][0])
+    print(final)
 
-    pd.DataFrame(Final).to_excel('output.xlsx', header=False, index=False)
+    pd.DataFrame(final).to_excel('output.xlsx', header=False, index=False)
 
-CountWordsUsage()
+
+count_words_usage()
